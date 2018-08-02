@@ -17,7 +17,7 @@ public class ClassLoaderUtil {
 	public static byte[] getClassData(String path) {
 		try {
 			InputStream in = new FileInputStream(path);
-			return parseByteArray(in);
+			return parseStream2ByteArray(in);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -33,14 +33,14 @@ public class ClassLoaderUtil {
     public static byte[] getClassDataFromNet(String path) {
         try {
             URL url = new URL(path);
-            return parseByteArray(url.openStream());
+            return parseStream2ByteArray(url.openStream());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-	private static byte[] parseByteArray(InputStream ins) throws IOException {
+	private static byte[] parseStream2ByteArray(InputStream ins) throws IOException {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		int bufferSize = 4096;
 		byte[] buffer = new byte[bufferSize];
